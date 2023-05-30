@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Holidays for Cadets</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <h1>Генерація документів на відпустку курсантів</h1>
+    <div class="row">
+        <br>
+        <form action="#" th:action="@{/add}" th:object="${cadet}"          method="post">
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" :field="*{name}" name="name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Surname:</td>
+                    <td><input type="text" :field="*{surname}"
+                               name="surname"></td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+
+                    <td><input type="text" :field="*{city}" name="city"></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Add</button> </td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <div>
+            <a href="/download/pdf">Click here to download pdf</a>
+            <br>
+            <a href="/download/excel">Click here to download excel</a><br>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>City</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cadet : ${cadets}">
+                <td th:text="${cadet.name}"></td>
+                <td th:text="${cadet.surname}"></td>
+                <td th:text="${cadet.city}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
